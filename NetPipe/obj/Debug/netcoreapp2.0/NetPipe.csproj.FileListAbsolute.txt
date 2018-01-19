@@ -1,9 +1,0 @@
-D:\net-pipe\NetPipe\bin\Debug\netcoreapp2.0\NetPipe.deps.json
-D:\net-pipe\NetPipe\bin\Debug\netcoreapp2.0\NetPipe.dll
-D:\net-pipe\NetPipe\bin\Debug\netcoreapp2.0\NetPipe.pdb
-D:\net-pipe\NetPipe\obj\Debug\netcoreapp2.0\NetPipe.csprojResolveAssemblyReference.cache
-D:\net-pipe\NetPipe\obj\Debug\netcoreapp2.0\NetPipe.csproj.CoreCompileInputs.cache
-D:\net-pipe\NetPipe\obj\Debug\netcoreapp2.0\NetPipe.AssemblyInfoInputs.cache
-D:\net-pipe\NetPipe\obj\Debug\netcoreapp2.0\NetPipe.AssemblyInfo.cs
-D:\net-pipe\NetPipe\obj\Debug\netcoreapp2.0\NetPipe.dll
-D:\net-pipe\NetPipe\obj\Debug\netcoreapp2.0\NetPipe.pdb
