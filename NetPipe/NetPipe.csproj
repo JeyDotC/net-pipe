@@ -7,5 +7,4 @@
   <ItemGroup>
     <Compile Remove="Connectors\StartConnector.cs" />
   </ItemGroup>
-
 </Project>

@@ -62,6 +62,7 @@ namespace NetPipe.Tests
             conditionalConnector.ReceivePipe(pipe1, pipe3);
             conditionalConnector.ReceivePipe(pipe1, pipe4);
             // Join again
+            endConnector5.ConnectPrevious(pipe2);
             endConnector5.ConnectPrevious(pipe3);
             endConnector5.ConnectPrevious(pipe4);
             endConnector5.JoinInto(pipe5);

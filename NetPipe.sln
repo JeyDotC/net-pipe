@@ -5,7 +5,12 @@ VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetPipe", "NetPipe\NetPipe.csproj", "{1DD3CDDB-7FE5-4ABF-966B-DE0E6875A966}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetPipe.Tests", "NetPipe.Tests\NetPipe.Tests.csproj", "{AE75AD8B-89AE-4DB5-9460-411226E1554B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetPipe.Tests", "NetPipe.Tests\NetPipe.Tests.csproj", "{AE75AD8B-89AE-4DB5-9460-411226E1554B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{AB2FE25D-4366-40C8-B648-894B1460262A}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

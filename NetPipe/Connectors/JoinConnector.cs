@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NetPipe.Connectors
 {
-    public class JoinConnector : IConnector
+    public class JoinConnector : ConnectorBase
     {
         // The only pipe this connector will care about.
         private IPipe _pipe;
@@ -13,7 +13,7 @@ namespace NetPipe.Connectors
 
         public void JoinInto(IPipe next) => ReceivePipe(null, next);
 
-        public void ReceivePipe(IPipe previous, IPipe next)
+        public override void ReceivePipe(IPipe previous, IPipe next)
         {
             if (_pipe != null && next != null && next != _pipe)
             {
@@ -32,11 +32,14 @@ namespace NetPipe.Connectors
             }
         }
 
-        public IConnector RunPipes(IDictionary<string, object> load)
+        public override IConnector RunPipes(IDictionary<string, object> load)
         {
-            _pipe?.Process(load);
-
+            if (_pipe != null)
+            {
+                return RunPipe(_pipe, load);
+            }
             return _pipe?.OutputConnector;
         }
+        public override string ToString() => $" {(_pipe?.ToString())} -> {(_pipe?.OutputConnector?.ToString())}";
     }
 }

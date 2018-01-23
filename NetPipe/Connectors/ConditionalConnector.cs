@@ -4,7 +4,7 @@ using System.Text;
 
 namespace NetPipe.Connectors
 {
-    public class ConditionalConnector : IConnector
+    public class ConditionalConnector : ConnectorBase
     {
         private IList<IPipe> _options = new List<IPipe>();
 
@@ -15,7 +15,7 @@ namespace NetPipe.Connectors
             _condition = condition;
         }
 
-        public void ReceivePipe(IPipe previous, IPipe next)
+        public override void ReceivePipe(IPipe previous, IPipe next)
         {
             if (previous != null)
             {
@@ -26,13 +26,25 @@ namespace NetPipe.Connectors
             next.InputConnector = this;
         }
 
-        public IConnector RunPipes(IDictionary<string, object> load)
+        public override IConnector RunPipes(IDictionary<string, object> load)
         {
             var pipe = _condition(_options, load);
-            
-            pipe?.Process(load);
 
-            return pipe?.OutputConnector;
+            return pipe != null ? RunPipe(pipe, load) : null;
+        }
+
+        public override string ToString()
+        {
+            var stringBuilder = new StringBuilder();
+
+            stringBuilder.Append("{ ");
+            foreach (var pipe in _options)
+            {
+                stringBuilder.Append($"{(pipe?.ToString())} -> {(pipe?.OutputConnector?.ToString())}");
+            }
+            stringBuilder.Append(" }");
+
+            return stringBuilder.ToString();
         }
     }
 }
