@@ -1,10 +1,12 @@
 # Simple pipeline
 
-This library has the concept of a set of **pipes** joint by **connectors** where pipes are just code that do a single task and connectors coordinate the execution.
+This library has the concept of a set of **pipes** joint by **connectors** where pipes are just code that do a single task and connectors coordinate the execution. Each pipe receives a **load** which is just a dictionary with the state of the current task, each pipe can read/write information from that dictionary.
 
 Simple example:
 
+```
 Task 1 -> Task 2 -> Task 3
+```
 
 ```csharp
 var testLoad = new Dictionary<string, object>();
@@ -30,11 +32,13 @@ Now the `load` dictionary should look something like this:
 
 Basic condition example:
 
+```
             -> Task 2 -
           |            |
 Task 1 -> o -> Task 3 -o -> Task 5
           |            |
             -> Task 4 -
+```
 
 ```cs
 var pipeLine = new PipeLine()
