@@ -4,9 +4,9 @@ using System.Text;
 
 namespace NetPipe.Pipes
 {
-    public abstract class GenericPipe<T> : PipeBase
+    public abstract class GenericPipe<T> : PipeBase, IPipeWithInputKey
     {
-        protected string InputKey => typeof(T).Name;
+        public virtual string InputKey => typeof(T).Name;
 
         protected abstract void Process(T parameter);
 

@@ -4,11 +4,11 @@ using System.Text;
 
 namespace NetPipe.Pipes
 {
-    public abstract class GenericPipeWithOutput<T, TResult> : PipeBase
+    public abstract class GenericPipeWithOutput<T, TResult> : PipeBase, IPipeWithInputKey, IPipeWithOutputKey
     {
-        protected string InputKey => typeof(T).Name;
+        public virtual string InputKey => typeof(T).Name;
 
-        protected string OutputKey => typeof(TResult).Name;
+        public virtual string OutputKey => typeof(TResult).Name;
 
         protected abstract TResult Process(T parameter);
 
