@@ -2,16 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <Version>0.9.1</Version>
-    <AssemblyVersion>0.9.0.1</AssemblyVersion>
-    <FileVersion>0.9.0.1</FileVersion>
+    <Version>0.9.2</Version>
+    <AssemblyVersion>0.9.2.0</AssemblyVersion>
+    <FileVersion>0.9.2.0</FileVersion>
     <Description>This library has the concept of a set of pipes joint by connectors where pipes are just code that do a single task and connectors coordinate the execution.</Description>
     <PackageProjectUrl>https://github.com/JeyDotC/net-pipe</PackageProjectUrl>
     <RepositoryUrl>https://github.com/JeyDotC/net-pipe</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>Workflow, pipes and filters</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageReleaseNotes>Defined pipes with input and output key interfaces.</PackageReleaseNotes>
+    <PackageReleaseNotes>- Added Skip capability to the BeforePipeEvent.
+- Fixed 'first connector won't run bug'
+- Added helper methods to PipeLineRunner to register events.</PackageReleaseNotes>
     <PackageLicenseUrl>https://raw.githubusercontent.com/JeyDotC/net-pipe/master/LICENSE</PackageLicenseUrl>
     <Copyright>2018</Copyright>
   </PropertyGroup>

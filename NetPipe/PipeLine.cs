@@ -1,5 +1,4 @@
 ﻿using NetPipe.Connectors;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +11,7 @@ namespace NetPipe
         private List<IPipe> _currentPipeList = new List<IPipe>();
         private IConnector _lastConnector;
         private IConnector _startConnector;
-        private readonly IList<IConnector> _connectors = new List<IConnector>();
+        private readonly IList<IConnector> _connectors;
         private bool _hasPipesPending = false;
 
         public PipeLine()
@@ -24,6 +23,7 @@ namespace NetPipe
         {
             _startConnector = startConnector;
             _lastConnector = startConnector;
+            _connectors = new List<IConnector> { _startConnector };
         }
 
         public PipeLineRunner Finish()
@@ -81,32 +81,6 @@ namespace NetPipe
             foreach (var next in nexts)
             {
                 connector.ReceivePipe(previous, next);
-            }
-        }
-    }
-
-    public class PipeLineRunner
-    {
-        private readonly IConnector _startConnector;
-        private readonly IEnumerable<IConnector> _connectors;
-
-        public PipeLineRunner(IConnector startConnector, IEnumerable<IConnector> connectors)
-        {
-            _startConnector = startConnector;
-            _connectors = connectors;
-        }
-
-        public void Run(IDictionary<string, object> load)
-           => RunInternal(_startConnector, load);
-
-        public void RunFrom(Func<IEnumerable<IConnector>, IConnector> condition, IDictionary<string, object> load)
-            => RunInternal(condition(_connectors), load);
-
-        private static void RunInternal(IConnector currentConnector, IDictionary<string, object> load)
-        {
-            while (currentConnector != null)
-            {
-                currentConnector = currentConnector.RunPipes(load);
             }
         }
     }

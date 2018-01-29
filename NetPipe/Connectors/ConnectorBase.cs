@@ -12,7 +12,14 @@ namespace NetPipe.Connectors
 
         protected IConnector RunPipe(IPipe pipe, IDictionary<string, object> dictionary)
         {
-            BeforePipeRun?.Invoke(this, new BeforePipeRunEventArgs(pipe));
+            var beforeRunPipeEventArgs = new BeforePipeRunEventArgs(pipe);
+
+            BeforePipeRun?.Invoke(this, beforeRunPipeEventArgs);
+
+            if (beforeRunPipeEventArgs.Skip)
+            {
+                return pipe.OutputConnector;
+            }
 
             try
             {
