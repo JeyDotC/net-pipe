@@ -12,6 +12,8 @@
     <PackageTags>Workflow, pipes and filters</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageReleaseNotes>Defined pipes with input and output key interfaces.</PackageReleaseNotes>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/JeyDotC/net-pipe/master/LICENSE</PackageLicenseUrl>
+    <Copyright>2018</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
