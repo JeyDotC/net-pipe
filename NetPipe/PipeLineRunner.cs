@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NetPipe
 {
@@ -33,7 +34,15 @@ namespace NetPipe
         public PipeLineRunner(IConnector startConnector, IEnumerable<IConnector> connectors)
         {
             _startConnector = startConnector;
-            _connectors = connectors;
+
+            if (!connectors.Contains(_startConnector))
+            {
+                _connectors = connectors.Prepend(_startConnector);
+            }
+            else
+            {
+                _connectors = connectors;
+            }
         }
 
         public void Run(IDictionary<string, object> load)

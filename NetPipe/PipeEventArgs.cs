@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace NetPipe
 {
@@ -6,6 +7,12 @@ namespace NetPipe
     {
         public IPipe Pipe { get; }
 
-        public PipeEventArgs(IPipe pipe) => Pipe = pipe;
+        public IDictionary<string, object> Load { get; }
+
+        public PipeEventArgs(IPipe pipe, IDictionary<string, object> load)
+        {
+            Pipe = pipe;
+            Load = load;
+        }
     }
 }

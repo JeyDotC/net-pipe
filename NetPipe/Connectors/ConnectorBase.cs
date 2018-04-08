@@ -10,9 +10,9 @@ namespace NetPipe.Connectors
         public event EventHandler<PipeSuccessEventArgs> PipeSuccess;
         public event EventHandler<PipeErrorEventArgs> PipeError;
 
-        protected IConnector RunPipe(IPipe pipe, IDictionary<string, object> dictionary)
+        protected IConnector RunPipe(IPipe pipe, IDictionary<string, object> load)
         {
-            var beforeRunPipeEventArgs = new BeforePipeRunEventArgs(pipe);
+            var beforeRunPipeEventArgs = new BeforePipeRunEventArgs(pipe, load);
 
             BeforePipeRun?.Invoke(this, beforeRunPipeEventArgs);
 
@@ -23,12 +23,12 @@ namespace NetPipe.Connectors
 
             try
             {
-                pipe.Process(dictionary);
-                PipeSuccess?.Invoke(this, new PipeSuccessEventArgs(pipe));
+                pipe.Process(load);
+                PipeSuccess?.Invoke(this, new PipeSuccessEventArgs(pipe, load));
             }
             catch (Exception ex)
             {
-                var errorEventArgs = new PipeErrorEventArgs(pipe, ex);
+                var errorEventArgs = new PipeErrorEventArgs(pipe, load, ex);
 
                 PipeError?.Invoke(this, errorEventArgs);
 

@@ -32,6 +32,40 @@ namespace NetPipe.Tests
         }
 
         [TestMethod]
+        public void PipeLineTests_DirectConnector_Events()
+        {
+            var testLoad = new Dictionary<string, object>();
+
+            var pipeLineRunner = new PipeLine()
+                .Pipe("pipe1", load => load["pipe1"] = true)
+                .Connect()
+                .Pipe("pipe2", load => load["pipe2"] = true)
+                .Connect()
+                .Pipe("pipe3", load => load["pipe3"] = true)
+                .Finish();
+
+            pipeLineRunner.BeforePipeRun((sender, e) 
+                => e.Load[$"{(e.Pipe as NamedPipe).Name}-BeforeRun"] = true);
+
+            pipeLineRunner.PipeSuccess((sender, e)
+                => e.Load[$"{(e.Pipe as NamedPipe).Name}-PipeSuccess"] = true);
+
+            pipeLineRunner.Run(testLoad);
+
+            Assert.AreEqual(testLoad["pipe1"], true);
+            Assert.AreEqual(testLoad["pipe2"], true);
+            Assert.AreEqual(testLoad["pipe3"], true);
+
+            Assert.AreEqual(testLoad["pipe1-BeforeRun"], true);
+            Assert.AreEqual(testLoad["pipe2-BeforeRun"], true);
+            Assert.AreEqual(testLoad["pipe3-BeforeRun"], true);
+
+            Assert.AreEqual(testLoad["pipe1-PipeSuccess"], true);
+            Assert.AreEqual(testLoad["pipe2-PipeSuccess"], true);
+            Assert.AreEqual(testLoad["pipe3-PipeSuccess"], true);
+        }
+
+        [TestMethod]
         public void ConditionalConnectorTests_BasicConnectPipes()
         {
             //         2

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace NetPipe
 {
@@ -8,7 +9,7 @@ namespace NetPipe
 
         public ErrorAction ErrorAction { get; set; } = ErrorAction.Rethrow;
 
-        public PipeErrorEventArgs(IPipe pipe, Exception exception) : base(pipe)
+        public PipeErrorEventArgs(IPipe pipe, IDictionary<string, object> load, Exception exception) : base(pipe, load)
             => Error = exception;
     }
 }
